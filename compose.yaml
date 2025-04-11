@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  dlstreamer:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: tec/dlstreamer:devel
+    privileged: true
+    network_mode: host
+    working_dir: /home/dlstreamer
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ~/.Xauthority:/home/dlstreamer/.Xauthority
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/bus/usb:/dev/bus/usb
+      - ./test:/home/dlstreamer/code:rw ##curent drectory
+    
+    environment: 
+      - XDG_RUNTIME_DIR=/tmp
+      - DISPLAY=${DISPLAY}
+    
+
+
+      
+
