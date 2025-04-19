@@ -23,11 +23,21 @@ Git 1.8.3.1+, tar 1.28+, Python 3.8.0+, gcc 8.0+, GNU make 4.0+.
 
 La versión implementada en la aplicación sigue la versión 2023.3 con la guia oficial encontrada en [2].
 
+## Gstreamer
+
+Dentro del archivo de configuración de Yocto Project fueron agregados plugins de Gstreamer bajo la versión 1.22.12.
+
+## Otros
+
+Dentro de los toolkits necesarios para la aplicación está presente python3, mumpy y pillow. 
+
+
 
 
 ## Referencias
 
 [1] https://docs.yoctoproject.org/5.0.7/brief-yoctoprojectqs/index.html
+
 [2] https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_yocto.html
 
 
