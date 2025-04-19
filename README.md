@@ -87,6 +87,25 @@ gst_launch(pipeline_str)
 Esta aplicación tiene dos partes principales: descripción de las rutas a buscar para encontrar todos los archivos necesarios y el pipeline a ejecutar por gstreamer. 
 Como se puede observar, esta aplicación busca el nombre del modelo que se le diga, en este caso: human-pose-estimation. 
 
+### Mapeo de dependencias
+
+Las layers utilizadas son: 
+
+1) meta-poky y core: proporcionan el sistema base de Linux, incluyen herramientas esenciales del sistema y bibliotecas base, además de que proveen el framework BitBake para la construcción de imágenes.
+
+2) meta-intel: proporciona OpenVINO y sus componentes. 
+
+3) meta-openembedded/meta-oe: incluye dependencias generales para multimedia e IA y ofrece bibliotecas de utilidad necesarias para procesamiento de imagen.
+
+4) meta-openembedded/meta-python: proporciona módulos Python adicionales como numpy. 
+
+5) meta-openembedded/meta-multimedia: bibliotecas adicionales para GStreamer y herramientas de procesamiento multimedia. 
+
+6) meta-myapp: contiene la aplicación principal de detectión de pose humana, el video fuente y el modelo preentrenado. 
+
+GStreamer (de poky/meta) utiliza OpenCV (de meta-oe), la capa que se intentó añadir dlstreamer (de meta-dlstreamer) depende de OpenVINO (de meta-intel). Y la aplicación principal (de meta-myapp) depende de todos los componentes anteriores.
+
+
 
 ## Referencias
 
