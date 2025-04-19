@@ -19,23 +19,23 @@ Ciertas dependencias de software:
 
 Git 1.8.3.1+, tar 1.28+, Python 3.8.0+, gcc 8.0+, GNU make 4.0+.
 
-### Docker 
+#### Docker 
 
 Este toolkit fue utilizado como paso intermedio, previamente a la construccion de la imagen en Yocto Project para tener un escapsulado en el que se instalaran todas las dependencias necesarias y verificar el funcionamiento de la aplicación. La versión utilizada fue 28.0.2.
 
-### OpenVINO
+#### OpenVINO
 
 La versión implementada en la aplicación sigue la versión 2023.3 con la guia oficial encontrada en [2].
 
-### Gstreamer
+#### Gstreamer
 
 Dentro del archivo de configuración de Yocto Project fueron agregados plugins de Gstreamer bajo la versión 1.22.12.
 
-### Virtual Box
+#### Virtual Box
 
 La imagen a medida finalmente se corrió en una máquina virtual usando VirtualBox.
 
-### Otros
+#### Otros
 
 Dentro de los toolkits necesarios para la aplicación está presente python3, mumpy y pillow. 
 
