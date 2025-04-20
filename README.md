@@ -9,7 +9,7 @@ El proyecto fue desarrollado en un computador host con las siguientes caracterí
 
 Dar características.
 
-### Características de los toolkits utilizados
+### Características de los toolkits y herramientas utilizados
 
 Yocto Project: versión scarthgap.
 
@@ -101,7 +101,9 @@ Las layers utilizadas son:
 
 5) meta-openembedded/meta-multimedia: bibliotecas adicionales para GStreamer y herramientas de procesamiento multimedia. 
 
-6) meta-myapp: contiene la aplicación principal de detectión de pose humana, el video fuente y el modelo preentrenado. 
+6)meta-networkin: dispone de los servicios de conexión ssh.
+
+7) meta-myapp: contiene la aplicación principal de detectión de pose humana, el video fuente y el modelo preentrenado. 
 
 GStreamer (de poky/meta) utiliza OpenCV (de meta-oe), la capa que se intentó añadir dlstreamer (de meta-dlstreamer) depende de OpenVINO (de meta-intel). Y la aplicación principal (de meta-myapp) depende de todos los componentes anteriores.
 
@@ -153,6 +155,23 @@ Esto genera los archivos necesarios para hacer las pruebas con el virtualizador 
 ```bash
 runqemu qemux86-64 nographic serialstdio
 ```
+
+### Instalación de máquina virtual
+
+Como requisito previo, en el archivo de Yocto Project, en local.config se agrega la linea:
+
+```bash
+IMAGE_FSTYPES = "wic wic.vdi"
+```
+Lo que convierte el forma de salida en una directamente compatible para cargarle a la máquina virtual al momento de crearla.
+
+
+### Problema y aplicación implementada
+
+La aplicación desarrollada está pensada para utilizar técnicas de visión por computadora para detectar y estimar la pose de personas en un video en tiempo real. El sistema integra GStreamer para el procesamiento de video, OpenVINO para la aceleración de inferencia, y dlstreamer, idealmente,para conectar ambos componentes.
+La aplicación resuelve el desafío de detectar la postura corporal humana en video, lo que implica: procesar cada fotograma del video, identificar personas en la escena, determinar la posición de articulaciones clave (cabeza, hombros, codos, etc.) y poder visualizar los resultados en tiempo real.
+
+
 
 
 ## Referencias
