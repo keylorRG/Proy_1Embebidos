@@ -117,6 +117,12 @@ git clone https://git.yoctoproject.org/meta-intel
 cd meta-intel; git fetch; git check out scarthgap
 ```
 
+Esto clona el repo para tenerlo a disposición, para agregar dichos repositorios (los cuales ya contienen la estructura y archivos para ser reconocidos como layer dentro de Yocto) se ejecuta el siguiente comando para que bitbake lo agregue: 
+
+```bash
+bitbake-layers add-layers <name_layer>
+```
+
 ## Recetas de Yocto: 
 
  myapp_1.0.bb: esta es la receta de la capa personalizada qque se realizó. 
