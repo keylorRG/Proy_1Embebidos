@@ -135,9 +135,10 @@ Esta fue la receta, en donde se especifican las rutas de los archivos necesarios
 
 ### Target Machine
 Dentro del archivo conf/local.conf se específicó esta linea:
+```bash
 
 MACHINE ??= "qemux86-64"
-
+```
 Esta configuración define que la imagen se construirá para una arquitectura x86 de 64 bits virtualizada en QEMU.
 
 ### Síntesis de la imagen
