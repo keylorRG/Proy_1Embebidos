@@ -7,7 +7,7 @@ En este tutorial se documentan aspectos técnicos acerca del flujo de trabajo se
 
 El proyecto fue desarrollado en un computador host con las siguientes características: 
 
-12 cores con 12 Gbytes de RAM con sistema Operativo Ubuntu. 
+12 cores con 12 Gbytes de RAM con sistema Operativo Ubuntu y 120 Gbytes de almacenamiento. 
 
 ### Características de los toolkits y herramientas utilizados
 
