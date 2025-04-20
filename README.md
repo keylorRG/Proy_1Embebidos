@@ -105,6 +105,53 @@ Las layers utilizadas son:
 
 GStreamer (de poky/meta) utiliza OpenCV (de meta-oe), la capa que se intentó añadir dlstreamer (de meta-dlstreamer) depende de OpenVINO (de meta-intel). Y la aplicación principal (de meta-myapp) depende de todos los componentes anteriores.
 
+## Recetas de Yocto: 
+
+ myapp_1.0.bb: esta es la receta de la capa personalizada qque se realizó. 
+
+```text
+SUMMARY = "Human pose estimation app with OpenVINO"
+LICENSE = "CLOSED"
+SRC_URI = "file://run_pose.py \
+           file://utils \
+           file://models \
+           file://model_proc \
+           file://face-demographics-walking.mp4"
+
+# Instala todo dentro de /usr/share/myapp
+do_install() {
+    install -d ${D}${datadir}/myapp
+    cp -r ${WORKDIR}/run_pose.py ${D}${datadir}/myapp/
+    cp -r ${WORKDIR}/utils ${D}${datadir}/myapp/
+    cp -r ${WORKDIR}/models ${D}${datadir}/myapp/
+    cp -r ${WORKDIR}/model_proc ${D}${datadir}/myapp/
+    cp -r ${WORKDIR}/face-demographics-walking.mp4 ${D}${datadir}/myapp/
+}
+
+FILES:${PN} += "${datadir}/myapp"
+
+```
+Esta fue la receta, en donde se especifican las rutas de los archivos necesarios así como la indicación de los elementos que debe copiar al crear la imagen. 
+
+### Target Machine
+Dentro del archivo conf/local.conf se específicó esta linea:
+
+MACHINE ??= "qemux86-64"
+
+Esta configuración define que la imagen se construirá para una arquitectura x86 de 64 bits virtualizada en QEMU.
+
+### Síntesis de la imagen
+
+Al tener listas las layers y el archivo local.conf correctamente configurados, se ejecuta: 
+
+```bash
+bitbake core-image-minimal
+```
+
+Esto genera los archivos necesarios para hacer las pruebas con el virtualizador qemu usando: 
+```bash
+runqemu qemux86-64 nographic serialstdio
+```
 
 
 ## Referencias
