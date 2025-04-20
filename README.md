@@ -107,6 +107,16 @@ Las layers utilizadas son:
 
 GStreamer (de poky/meta) utiliza OpenCV (de meta-oe), la capa que se intentó añadir dlstreamer (de meta-dlstreamer) depende de OpenVINO (de meta-intel). Y la aplicación principal (de meta-myapp) depende de todos los componentes anteriores.
 
+Las layers que vienen dadas por un repositorio de github son integradas de la siguiente manera: clonar el repositorio, cambiarse al brnahc de la versión de Yocto correspondiente y con bitbake se puede agregar la layer automáticamente: 
+
+```bash 
+git clone https://git.yoctoproject.org/meta-intel
+```
+
+```bash 
+cd meta-intel; git fetch; git check out scarthgap
+```
+
 ## Recetas de Yocto: 
 
  myapp_1.0.bb: esta es la receta de la capa personalizada qque se realizó. 
