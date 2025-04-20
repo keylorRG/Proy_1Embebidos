@@ -180,4 +180,6 @@ La aplicación resuelve el desafío de detectar la postura corporal humana en vi
 
 [2] https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_yocto.html
 
+[3] https://github.com/Tobiasfonseca/DemoYocto
+
 
