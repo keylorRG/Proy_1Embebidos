@@ -7,7 +7,7 @@ Al clonar los repositorios con la estructura lista para ser añadidas como layer
 Solución: este error se soluciona debido a que el repo se clona y encuentra en el branch más reciente compatible posiblemente con la versión más reciente de Yocto: se debe hacer el cambio al brnahc correspondiende de la versión en uso, en este caso sería Scarthgap. 
 
 
-### 2)Integración de dlstreamer
+### 2) Integración de dlstreamer
 
 No se pudo compilar dlstreamer desde el código fuente en Yocto debido a errores de configuración y dependencias.
 
