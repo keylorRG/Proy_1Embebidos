@@ -23,7 +23,7 @@ Solución: Se optimizó el pipeline de GStreamer reduciendo la resolución, limi
 
 La receta no encontraba correctamente el archivo de video fuente.
 
-Solución: cuando se hace una receta y no debe compilar código solo copiar/descargar debemos tanto danrle la dirección está donde encontrar dicho recurso, ya sea en nuestro sistema de archivos de la mauqina host o la url al repositorio, por ejemplo, esto en el apartido de SCR_URI. Dentro del apartado do_install debemos específicar donde será copiado o descargado ese recurso, esta dirección es dentro de nuestra imagen. 
+Solución: cuando se hace una receta y no debe compilar código solo copiar/descargar debemos tanto darle la dirección donde encontrar dicho recurso, ya sea en nuestro sistema de archivos de la maquina host o la url al repositorio, por ejemplo, esto en el apartido de SCR_URI. Dentro del apartado do_install debemos específicar donde será copiado o descargado ese recurso, esta dirección es dentro de nuestra imagen. 
 
 
 
@@ -45,7 +45,7 @@ Se recomienda considerar para fututos proyectos que para componentes complejos c
 
 Considerar el uso de contenedores Docker para componentes con dependencias complejas, como un paso previo para poder observar la totalidad de dependencias a nivel de software. 
 
-Se recomienda 'cocinar' las recetas de forma aislada previamente a 'cocinar' toda la imagen, de esta forma poder aislar erroes y facilitar su correción, especialmente con layers personalizadas.
+Se recomienda 'cocinar' las recetas de forma aislada previamente a 'cocinar' toda la imagen, de esta forma poder aislar erroes y facilitar su corrección, especialmente con layers personalizadas.
 
 Se recomienda optimizar las aplicaciones de procesamiento de video para entornos con recursos limitados, como qemu.
 
