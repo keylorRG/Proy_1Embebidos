@@ -214,6 +214,17 @@ IMAGE_FSTYPES = "wic wic.vdi"
 Lo que convierte el forma de salida en una directamente compatible para cargarle a la máquina virtual al momento de crearla.
 Teniendo instalado virtualbox, se crea una nueva máquina con sistema operativo linux y se seleccionada la opción de carga un disco duro existente, en este apartado seleccionamos el archivo .vdi que nos genera el proceso de 'cocinado'. Esto nos permite acceder a una máquina virtual con el sistema operativo a la medida. 
 
+Internamente hacemos:
+
+```bash 
+dhcpcd eth0
+```
+Lo que asigna un ip automáticamente, que podemos visualizar con:
+
+```bash
+ip a
+```
+COn eso hacer la conexión ssh. 
 
 
 ### Problema y aplicación implementada
