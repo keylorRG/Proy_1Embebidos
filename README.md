@@ -90,6 +90,34 @@ Como se puede observar, esta aplicación busca el nombre del modelo que se le di
 ### Lista de dependencias
  Se requiere clonar los siguientes paquetes de software contenidos en repositorios: 
  Meta-poky, mental-intel, meta-openmebeded, meta-networking, layer personalizada y  se debe incluir por supuesto una versión de python. 
+ En cuanto a gstreamer, se hizo append de los siguientes elementos, dentro del archivo loca.conf: 
+
+ ```bash
+IMAGE_INSTALL:append = " \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-libav \
+    gstreamer1.0-python \
+    gstreamer1.0-rtsp-server \
+    gstreamer1.0-meta-base \
+"
+LICENSE_FLAGS_ACCEPTED += "commercial"
+ ```
+Donde esta última línea es la aceptación de licencia. 
+
+En cuanto a dependencias directas de python y openssh para la conexión ssh, se tiene: 
+
+```bash
+IMAGE_INSTALL:append = " openssh \
+    python3-pillow \
+    python3-matplotlib \
+    python3-opencv \
+    python3-numpy \
+    python3-dev \
+"
+```
 
 ### Mapeo de dependencias
 
