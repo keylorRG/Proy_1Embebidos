@@ -39,7 +39,7 @@ La imagen a medida finalmente se corrió en una máquina virtual usando VirtualB
 
 Dentro de los toolkits necesarios para la aplicación está presente python3, mumpy y pillow. 
 
-### Flujo de trabajo de los toolkits utilizados
+### Descripción flujo de trabajo de los toolkits utilizados
 
 Se revisó el ejemplo proporcionado en el taller de OpenVINO como referencia y punto de partida. Con estos recursos se tomaron como referencia y se generó un contenedor Docker. Se desarrolló un Dockerfile donde se describieron todas las dependencias y requerimientos tanto a nivel de software/toolkits así como del modelo a probar. 
 
@@ -87,6 +87,10 @@ gst_launch(pipeline_str)
 Esta aplicación tiene dos partes principales: descripción de las rutas a buscar para encontrar todos los archivos necesarios y el pipeline a ejecutar por gstreamer. 
 Como se puede observar, esta aplicación busca el nombre del modelo que se le diga, en este caso: human-pose-estimation. 
 
+### Lista de dependencias
+ Se requiere clonar los siguientes paquetes de software contenidos en repositorios: 
+ Meta-poky, mental-intel, meta-openmebeded, meta-networking, layer personalizada y  se debe incluir por supuesto una versión de python. 
+
 ### Mapeo de dependencias
 
 Las layers utilizadas son: 
@@ -101,7 +105,7 @@ Las layers utilizadas son:
 
 5) meta-openembedded/meta-multimedia: bibliotecas adicionales para GStreamer y herramientas de procesamiento multimedia. 
 
-6)meta-networkin: dispone de los servicios de conexión ssh.
+6)meta-networking: dispone de los servicios de conexión ssh.
 
 7) meta-myapp: contiene la aplicación principal de detectión de pose humana, el video fuente y el modelo preentrenado. 
 
@@ -125,7 +129,7 @@ bitbake-layers add-layers <name_layer>
 
 ## Recetas de Yocto: 
 
- myapp_1.0.bb: esta es la receta de la capa personalizada qque se realizó. 
+ myapp_1.0.bb: esta es la receta de la capa personalizada que se realizó. 
 
 ```text
 SUMMARY = "Human pose estimation app with OpenVINO"
@@ -159,7 +163,7 @@ MACHINE ??= "qemux86-64"
 ```
 Esta configuración define que la imagen se construirá para una arquitectura x86 de 64 bits virtualizada en QEMU.
 
-### Síntesis de la imagen
+### Proceso síntesis de la imagen
 
 Al tener listas las layers y el archivo local.conf correctamente configurados, se ejecuta: 
 
@@ -172,7 +176,7 @@ Esto genera los archivos necesarios para hacer las pruebas con el virtualizador 
 runqemu qemux86-64 nographic serialstdio
 ```
 
-### Instalación de máquina virtual
+### Instalación de imagen sobre máquina virtual
 
 Como requisito previo, en el archivo de Yocto Project, en local.config se agrega la linea:
 
