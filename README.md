@@ -236,7 +236,7 @@ La aplicación resuelve el desafío de detectar la postura corporal humana en vi
 
 Se propone hacer uso de OpenVINO, junto con Gstreamer y OenCV. 
 
-Se usó el modelo "person-detection-retail-0013" el cual se puede encontrar en los modelos de intel de [4].
+Se usó el modelo "person-detection-retail-0013" el cual se puede encontrar en los modelos de modelzoo de [4].
 
 Esta nueva implementación requirió descargar los modelos .xml y .bin en mi layer personalizada, así como la nueva apicación run_face.py. 
 
@@ -311,6 +311,9 @@ El resultado es satifactorio, ya que se muestra el video y se hace la inferencia
 
 ![Evidencia del modelo corriendo](images/demostracion.png)
 
+## Dependencias 
+
+Esta nueva modificación no requirió modificaciones adicionales en cuanto a la adicción de dependencias. Únicamente el nuevo modeo y la modificación del scritp. 
 
 [1] https://docs.yoctoproject.org/5.0.7/brief-yoctoprojectqs/index.html
 
