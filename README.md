@@ -232,15 +232,92 @@ COn eso hacer la conexión ssh.
 La aplicación desarrollada está pensada para utilizar técnicas de visión por computadora para detectar y estimar la pose de personas en un video en tiempo real. El sistema integra GStreamer para el procesamiento de video, OpenVINO para la aceleración de inferencia, y dlstreamer, idealmente,para conectar ambos componentes.
 La aplicación resuelve el desafío de detectar la postura corporal humana en video, lo que implica: procesar cada fotograma del video, identificar personas en la escena, determinar la posición de articulaciones clave (cabeza, hombros, codos, etc.) y poder visualizar los resultados en tiempo real.
 
+## Adaptación de proyecto: 
+
+Se propone hacer uso de OpenVINO, junto con Gstreamer y OenCV. 
+
+Se usó el modelo "person-detection-retail-0013" el cual se puede encontrar en los modelos de intel de [4].
+
+Esta nueva implementación requirió descargar los modelos .xml y .bin en mi layer personalizada, así como la nueva apicación run_face.py. 
+
+```bash
+
 
 
 
 ## Referencias
+import cv2
+import os
+import numpy as np
+from openvino.runtime import Core
+
+# Configuración
+#DEVICE = "AUTO"
+BASE_PATH = "/usr/share/myapp" 
+MODELS_PATH = os.path.join(BASE_PATH,"models")  
+MODEL_1 = "person-detection-retail-0013"
+HPE_MODEL = f"{MODELS_PATH}/intel/{MODEL_1}/{MODEL_1}.xml"
+
+#####cargamos modelo#######
+ie = Core()
+model = ie.read_model(model=HPE_MODEL)
+compiled_model = ie.compile_model(model=model, device_name="CPU")
+
+input_layer = compiled_model.input(0)
+output_layer = compiled_model.output(0)
+
+# GStreamer pipeline para video
+cap = cv2.VideoCapture('filesrc location=/usr/share/myapp/face-demographics-walking.mp4 ! decodebin ! videoscale ! vide>
+if not cap.isOpened():
+    print("Error al abrir GStreamer pipeline")
+    exit()
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # Preprocesamiento
+    resized = cv2.resize(frame, (input_layer.shape[3], input_layer.shape[2]))
+    input_blob = np.expand_dims(resized.transpose(2, 0, 1), 0)
+
+    # Inference
+    results = compiled_model([input_blob])[output_layer]
+
+    # Postprocesamiento y dibujo de resultados
+    for detection in results[0][0]:
+    confidence = float(detection[2])
+    if confidence > 0.3:
+        xmin = int(detection[3] * frame.shape[1])
+        ymin = int(detection[4] * frame.shape[0])
+        xmax = int(detection[5] * frame.shape[1])
+        ymax = int(detection[6] * frame.shape[0])
+        cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
+# Mostrar resultados
+cv2.imshow('Detección de personas', frame)
+if cv2.waitKey(1) & 0xFF == ord('q'):
+    break
+
+cap.release()
+cv2.destroyAllWindows()
+```
+
+Tras esta implementación, se hizo el mismo procedimiento, el cual consistió en hacer una copia scp desde el servidor hacia mi local host. 
+
+```bash
+scp keylor_yocto:/home/keylor/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs-20250427155105.wic.vdi /home/keylor/Documents/
+```
+El resultado es satifactorio, ya que se muestra el video y se hace la inferencia de las personas en el video. 
+
+![Evidencia del modelo corriendo](images/demostracion.png)
+
 
 [1] https://docs.yoctoproject.org/5.0.7/brief-yoctoprojectqs/index.html
 
 [2] https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_yocto.html
 
 [3] https://github.com/Tobiasfonseca/DemoYocto
+
+[4] https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/1/person-detection-retail-0013/FP32/
 
 
