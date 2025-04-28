@@ -315,6 +315,30 @@ El resultado es satifactorio, ya que se muestra el video y se hace la inferencia
 
 Esta nueva modificación no requirió modificaciones adicionales en cuanto a la adicción de dependencias. Únicamente el nuevo modeo y la modificación del scritp. 
 
+## Propuesta de dos aplicaciones
+
+Considerando ciertas variables de control, se propone el uso de este modelo para dos aplicaciones: 
+
+(1) alerta de seguridad para areas restringidas o bien, de uso comercial o doméstico. Envía una alerta al detectar una persona en la camara/video. 
+
+(2) Un contador de personas para estimar la cantidad de usuarios en alguún establecimiento. 
+
+```bash
+    ######alerta de "intruso"###########                                                                 
+    if hay_persona:                                                                                      
+        tiempo_actual = time.time()                                                                      
+        if tiempo_actual-ultima_alerta >= intervalo_alerta:                                              
+            print("ALERTA: Persona detectada.")                                                          
+            ultima_alerta = tiempo_actual                                                                
+    ####contador de personas####                                                                         
+    if hay_persona and not persona_presente:                                                             
+        contador_eventos += 1                                                                            
+        print(f"Personas detectadas hasta el momento: {contador_eventos}")                               
+        persona_presente = True                                                                          
+    elif not hay_persona and persona_presente:                                                           
+        persona_presente = False 
+```
+
 [1] https://docs.yoctoproject.org/5.0.7/brief-yoctoprojectqs/index.html
 
 [2] https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_yocto.html
